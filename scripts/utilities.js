@@ -1,5 +1,5 @@
 function myForEach(array, func) {
-  for (element in array) {
-    func(element);
+  for (var i = 0; i < array.length; i++) {
+    func(array[i]);
   }
 }
