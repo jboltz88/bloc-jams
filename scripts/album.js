@@ -28,6 +28,21 @@ var albumMarconi = {
   ]
 };
 
+var albumWalls = {
+  title: 'WALLS',
+  artist: 'Kings of Leon',
+  label: 'RCA Records',
+  year: '2016',
+  albumArtUrl: 'assets/images/album_covers/KOL-WALLS.jpg',
+  songs: [
+    { title: 'Waste A Moment', duration: '1:01' },
+    { title: 'Reverend', duration: '5:01' },
+    { title: 'Around The World', duration: '3:21'},
+    { title: 'Find Me', duration: '3:14' },
+    { title: 'Over', duration: '2:15'}
+  ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
     '<tr class="album-view-song-item">'
@@ -61,3 +76,5 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
 };
+
+document.getElementByClassName('album-cover-art')[0].addEventListener("click", setCurrentAlbum(albumWalls));
