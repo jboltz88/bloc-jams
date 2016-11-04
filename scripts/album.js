@@ -72,9 +72,23 @@ var setCurrentAlbum = function(album) {
     albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
   }
 };
- 
+
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+
+var albums = [albumPicasso, albumMarconi, albumWalls]
+
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
+  
+  var index = 1;
+  albumImage.addEventListener("click", function() {
+    setCurrentAlbum(albums[index]);
+        index++; 
+
+    if (index == albums.length) {
+      index = 0;
+    }
+    
+  });
 };
 
-document.getElementByClassName('album-cover-art')[0].addEventListener("click", setCurrentAlbum(albumWalls));
