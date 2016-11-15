@@ -84,26 +84,34 @@
 
 .seek-control .current-time {
   position: absolute;
-  top: 0.5 rem;
+  top: 0.75rem;
 }
 
 .seek-control .total-time {
   position: absolute;
   right: 0;
-  top: 0.5rem;
+  top: 0.75rem;
 }
 
 .seek-bar {
-  height: 0.25rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 0.75rem;
   border-radius: 2px;
   position: relative;
   cursor: pointer;
 }
 
+.seek-bar .shown {
+  height: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  margin-top: -0.75rem;
+}
+
 .seek-bar .fill {
   background-color: white;
-  width: 36%;
+  width: 0%;
   height: 0.25rem;
   border-radius: 2px;
 }
@@ -113,7 +121,7 @@
   height: 0.5rem;
   width: 0.5rem;
   background-color: white;
-  left: 36%;
+  left: 0%;
   top: 50%;
   margin-left: -0.25rem;
   margin-top: -0.25rem;
