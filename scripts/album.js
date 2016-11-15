@@ -5,7 +5,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     '<tr class="album-view-song-item">'
   + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
   + '  <td class="song-item-title">' + songName + '</td>'
-  + '  <td class="song-item-duration">' + songLength + '</td>'
+  + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
   + '</tr>'
   ;
 
@@ -147,7 +147,7 @@ var updateSeekBarWhileSongPlays = function() {
     currentSoundFile.bind('timeupdate', function(event) {
       var seekBarFillRatio = this.getTime() / this.getDuration();
       var $seekBar = $('.seek-control .seek-bar');
-      
+      setCurrentTimeInPlayerBar(this.getTime());
       updateSeekPercentage($seekBar, seekBarFillRatio);
     });
   }
@@ -216,6 +216,7 @@ var updatePlayerBarSong = function() {
   $('.currently-playing .artist-name').text(currentAlbum.artist);
   
   $('.main-controls .play-pause').html(playerBarPauseButton);
+  setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
 var togglePlayFromPlayerBar = function() {
@@ -229,7 +230,7 @@ var togglePlayFromPlayerBar = function() {
     $('.main-controls .play-pause').html(playerBarPlayButton);
     $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]').html(playButtonTemplate);
   }
-}
+};
 
 var setSong = function(songNumber) {
   if (currentSoundFile) {
@@ -254,6 +255,26 @@ var setVolume = function(volume) {
   if (currentSoundFile) {
     currentSoundFile.setVolume(volume);
     currentVolume = volume;
+  }
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  $('.current-time').text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $('.total-time').text(filterTimeCode(totalTime));
+};
+
+var filterTimeCode = function(timeInSeconds) {
+  timeInSeconds = parseFloat(timeInSeconds);
+  var seconds = timeInSeconds % 60;
+  var minutes = (timeInSeconds - seconds) / 60;
+  if (seconds < 10) {
+    return (minutes + ":0" + seconds.toFixed());
+  }
+  else {
+    return (minutes + ":" + seconds.toFixed());
   }
 };
 
